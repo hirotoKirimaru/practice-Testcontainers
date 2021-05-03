@@ -10,7 +10,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 @Disabled
 @SpringBootTest
@@ -18,22 +17,22 @@ import org.testcontainers.utility.DockerImageName;
 public class OracleTests {
 
   @Container
-  private static final OracleContainer mysql = new OracleContainer();
+  private static final OracleContainer oracle = new OracleContainer("container-registry.oracle.com/database/instantclient:12.2.0.1");
 //      .withUsername("devuser")
 //      .withPassword("devuser")
 //      .withDatabaseName("devdb"); // MySQLのコンテナを生成
 
   @Autowired
-  OracleTests mapper;
+  SampleMapper mapper;
 
   @DynamicPropertySource
   static void setup(DynamicPropertyRegistry registry) {
-    registry.add("spring.datasource.url", mysql::getJdbcUrl); // コンテナで起動中のMySQLへ接続するためのJDBC URLをプロパティへ設定
+    registry.add("spring.datasource.url", oracle::getJdbcUrl); // コンテナで起動中のMySQLへ接続するためのJDBC URLをプロパティへ設定
   }
 
   @Test
   void contextLoads() {
-    Assertions.assertThat(mysql.isRunning()).isTrue();
+    Assertions.assertThat(oracle.isRunning()).isTrue();
 //    {
 //      MysqlTestDemoApplication.Sample sample = new MysqlTestDemoApplication.Sample();
 //      sample.id = 1;
