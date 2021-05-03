@@ -3,6 +3,7 @@ package kirimaru.biz.repository;
 import kirimaru.biz.domain.Sample;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -13,7 +14,8 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
-@SpringBootTest
+//@SpringBootTest
+@MybatisTest
 @Testcontainers
 @ActiveProfiles("postgres")
 public class PostgresTests {
