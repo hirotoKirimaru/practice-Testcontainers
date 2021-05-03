@@ -5,11 +5,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -27,7 +25,7 @@ public class PostgresTests {
       .withDatabaseName("devdb"); // PostgreSQLのコンテナを生成
 
   @Autowired
-  PostgresMapper mapper;
+  SampleMapper mapper;
 
   @DynamicPropertySource
   static void setup(DynamicPropertyRegistry registry) {

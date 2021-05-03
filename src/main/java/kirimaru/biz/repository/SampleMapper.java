@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface PostgresMapper {
+public interface SampleMapper {
   @Insert("INSERT INTO SAMPLE (id, name) values(#{domain.id}, #{domain.name})")
   void insert(@Param("domain") Sample sample);
 
