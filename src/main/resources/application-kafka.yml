@@ -1,0 +1,3 @@
+spring.kafka:
+  - template.default-topic: demoTopic
+  - consumer.group-id: demoGroup
