@@ -11,13 +11,13 @@ import org.testcontainers.containers.OracleContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@Disabled
+//@Disabled
 @SpringBootTest
 @Testcontainers
 public class OracleTests {
 
   @Container
-  private static final OracleContainer oracle = new OracleContainer("container-registry.oracle.com/database/instantclient:12.2.0.1");
+  private static final OracleContainer oracle = new OracleContainer("oracleinanutshell/oracle-xe-11g:latest");
 //      .withUsername("devuser")
 //      .withPassword("devuser")
 //      .withDatabaseName("devdb"); // MySQLのコンテナを生成
