@@ -1,5 +1,7 @@
 package kirimaru;
 
+import io.awspring.cloud.messaging.listener.annotation.SqsListener;
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,6 +41,20 @@ public class PracticeTestContainersApplication {
 		}
 
 		@KafkaListener(topics = "demoTopic", groupId = "demoGroup")
+		void consume(Message<String> message) {
+			System.out.println(message);
+			messages.offer(message);
+		}
+
+	}
+
+	@Component
+	@RequiredArgsConstructor
+	class MySqsConsumer {
+
+		private final BlockingQueue<Message<String>> messages;
+
+		@SqsListener("demoQueue")
 		void consume(Message<String> message) {
 			System.out.println(message);
 			messages.offer(message);
